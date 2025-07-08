@@ -8,7 +8,9 @@
         ><img class="nav_link-img" src="@/assets/img/analysis.svg" alt=""
       /></router-link>
     </div>
-
+     <button class="nav_link-abs"
+        ><img class="nav_link-img" src="@/assets/img/plus.svg" alt=""
+      /></button>
     <div class="nav_links">
       <router-link class="nav_link" to="/setting"
         ><img class="nav_link-img" src="@/assets/img/setting.svg" alt=""
@@ -26,7 +28,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 40px 40px 0 0;
   --back-nav: #dff7e2;
   background-color: var(--back-nav);
@@ -43,8 +45,25 @@
   border-radius: 50%;
   background-color: var(--back-green);
   z-index: 2;
-  height: 90px;
-  width: 90px;
+  height: 85px;
+  width: 85px;
+}
+.nav_link-abs {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: var(--main-green);
+  z-index: 3;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav_link-abs img {
+  width: 40px;
 }
 .nav_links {
   display: flex;

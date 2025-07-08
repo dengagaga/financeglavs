@@ -8,7 +8,7 @@ export const useListAllStore = defineStore('listAll', () => {
         id:1,
         title:'ЗП',
         img:rent,
-        data:'20.07.2025',
+        data:'08.07.2025',
         cause:'Зарплата',
         price:20000,
         active:true,
@@ -18,7 +18,7 @@ export const useListAllStore = defineStore('listAll', () => {
         id:2,
         title:'Масло',
         img:rent,
-        data:'18.07.2025',
+        data:'08.07.2025',
         cause:'Авто',
         price:5400,
         active:true,
@@ -28,11 +28,21 @@ export const useListAllStore = defineStore('listAll', () => {
         id:3,
         title:'Продукты',
         img:rent,
-        data:'20.07.2025',
+        data:'08.07.2025',
         cause:'Продукты',
         price:2400,
         active:true,
         type:'expense'
+      },
+      {
+        id:3,
+        title:'Подработка',
+        img:rent,
+        data:'08.07.2025',
+        cause:'Подработка',
+        price:4000,
+        active:true,
+        type:'income'
       },
     ])
 

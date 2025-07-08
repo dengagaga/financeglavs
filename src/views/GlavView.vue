@@ -42,11 +42,14 @@ import navMenu from '@/components/UI/navMenu.vue'
 import pickDay from '@/components/UI/pickDay.vue'
 import list from '@/components/UI/list.vue'
 
+
 </script>
 <style scoped>
+.main {
+  height: 100vh;
+}
 .glav_all {
   background-color: var(--main-green);
-  height: 100vh;
 }
 .fon {
   padding: 63px 33px 33px;
