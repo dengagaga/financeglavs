@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <div class="nav_links">
-      <router-link class="nav_link" to="/glav"
+      <router-link class="nav_link" :active-class="'nav--active'" to="/glav"
         ><img class="nav_link-img" src="@/assets/img/home.svg" alt=""
       /></router-link>
       <router-link class="nav_link" to="/"
@@ -34,7 +34,7 @@
   background-color: var(--back-nav);
   display: flex;
   justify-content: space-between;
-  padding: 30px 20px;
+  padding: 20px 20px;
 }
 .nav::after {
   content: '';
@@ -67,9 +67,18 @@
 }
 .nav_links {
   display: flex;
-  gap: 50px;
+  gap: 40px;
 }
 .nav_link {
+ 
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.nav--active {
+   background-color: var(--main-green);
 }
 .nav_link-img {
   width: 30px;

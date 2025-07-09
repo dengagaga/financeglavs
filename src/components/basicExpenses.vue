@@ -1,6 +1,5 @@
 <template>
     <div class="basic_expenses">
-      {{ daysStore.activeDay }}
           <div class="basic_expenses-item">
             <img src="@/assets/img/Salary.svg" alt="">
             <div class="basic_expenses-item-content">
@@ -12,7 +11,7 @@
             <img src="@/assets/img/Food.svg" alt="">
             <div class="basic_expenses-item-content">
                 <h4 class="basic_expenses-item-content-title">Самый большой расход за {{ daysStore.activeDay.title }}</h4>
-                <p class="basic_expenses-item-content-text">{{ daysStore.bigExpenseToday }} р</p>
+                <p class="basic_expenses-item-content-text">{{ bigExpense }} р</p>
             </div>
           </div>
       </div>
@@ -22,7 +21,10 @@ import { computed } from 'vue'
 import { useDaysStore } from '@/stores/days';
 const daysStore = useDaysStore()
 const totalProfit= computed(() => {
-  return daysStore.activeDay.id == 1 ? daysStore.totalProfitToday : daysStore.totalProfitWeek
+  return daysStore.activeDay.id == 1 ? daysStore.totalProfitToday : daysStore.activeDay.id == 2 ? daysStore.totalProfitWeek : daysStore.totalProfitMounth
+})
+const bigExpense= computed(() => {
+  return daysStore.activeDay.id == 1 ? daysStore.bigExpenseToday : daysStore.activeDay.id == 2 ? daysStore.bigExpenseWeek : daysStore.bigExpenseMounth
 })
 </script>
 <style>

@@ -6,13 +6,13 @@
         <form action="" class="form_autorization">
           <div class="form_autorization-inps">
             <label class="form_autorization-label" for="">Почта</label>
-            <input class="form_autorization-inp" type="text" name="" id="" />
+            <input class="form_autorization-inp"  v-model="gmail" type="text" name="" id="" />
           </div>
           <div class="form_autorization-inps form_autorization-inps-pass">
             <label class="form_autorization-label" for="">Пароль</label>
-            <input class="form_autorization-inp" type="text" name="" id="" />
+            <input class="form_autorization-inp" v-model="password" type="text" name="" id="" />
           </div>
-          <btnAutorization :link="'glav'">Вход</btnAutorization>
+          <btnAutorization :link="''" @click="autorization()">Вход</btnAutorization>
           <a href="" class="form_autorization-link">Забыли пароль?</a>
           <btnAutorization :link="'register'" class="form_autorization-reg">
             Зарегистрироваться
@@ -24,7 +24,26 @@
 </template>
 
 <script setup>
+import router from '@/router'
 import btnAutorization from '@/components/UI/btnAutorization.vue'
+import { ref } from 'vue';
+import axios from 'axios';
+const gmail = ref('');
+const password = ref('');
+const autorization = () => {
+    axios.post('https://be8fbe4c3c8dd85c.mokky.dev/auth', { password: password.value, email: gmail.value }, 
+    {headers: { 'Content-Type': 'application/json', Accept: "application/json", }}).then((res) => {
+      console.log(res.data.token);
+      
+      if (res.data) {
+        gmail.value = '';
+        password.value = '';
+        router.push('/glav')
+      }
+    }
+   
+  );
+}
 </script>
 
 <style>

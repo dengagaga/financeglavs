@@ -1,5 +1,5 @@
 <template>
-  <button class="form_autorization-btn" @click="transition()">
+  <button class="form_autorization-btn" type="button" @click="transition()">
     <slot></slot>
   </button>
 </template>
@@ -9,7 +9,11 @@ const props = defineProps({
   link: String,
 })
 const transition = () => {
-  router.push('/' + props.link)
+  if (props.link == '') {
+    return
+  } else {
+    router.push('/' + props.link)
+  }
 }
 </script>
 <style>

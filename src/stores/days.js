@@ -43,6 +43,8 @@ const toggleActive = (item) => {
 const total = []
 const totalProfitToday = ref(0);
 const bigExpenseToday = ref(0);
+const bigExpenseWeek = ref(0);
+const bigExpenseMounth = ref(0);
 const totalProfitWeek = ref(0);
 const totalProfitMounth = ref(0);
 listAllStore.listAll.forEach(item => {
@@ -55,5 +57,5 @@ listAllStore.listAll.forEach(item => {
     bigExpenseToday.value = total[0]
   }
 })
-  return { pickDay, toggleActive, activeDay, formattedDataDay, totalProfitToday, totalProfitWeek, totalProfitMounth, bigExpenseToday }
+  return { pickDay, toggleActive, activeDay, formattedDataDay, totalProfitToday, totalProfitWeek, totalProfitMounth, bigExpenseToday, bigExpenseWeek, bigExpenseMounth }
 })
