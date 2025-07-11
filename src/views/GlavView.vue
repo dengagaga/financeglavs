@@ -1,5 +1,6 @@
 <template>
   <div class="glav_all">
+    <modalAll @toggleShow="toggleShow" v-if="modal" />
     <header class="header">
       <div class="header_top">
         <img class="header_top-logo" src="@/assets/img/logo.png" alt="" />
@@ -30,7 +31,7 @@
             <basicExpenses></basicExpenses>
             <list></list>
           </div>
-      <navMenu></navMenu>
+      <navMenu :close="close" @toggleShow="toggleShow"></navMenu>
     </main>
    
   </div>
@@ -38,11 +39,23 @@
 <script setup>
 import glavMenu from '@/components/glavMenu.vue'
 import basicExpenses from '@/components/basicExpenses.vue'
+import modalAll from '@/components/modalAll.vue'
 import navMenu from '@/components/UI/navMenu.vue'
 import pickDay from '@/components/UI/pickDay.vue'
 import list from '@/components/UI/list.vue'
+import { onMounted, ref } from 'vue'
+import { useListAllStore } from '@/stores/listAll'
+const listAllStore = useListAllStore()
+onMounted(() => {
+  listAllStore.getListAll()
+})
 
-
+const toggleShow = () => {
+  modal.value = !modal.value
+  close.value = !close.value
+}
+const modal = ref(false)
+const close = ref(false)
 </script>
 <style scoped>
 .main {

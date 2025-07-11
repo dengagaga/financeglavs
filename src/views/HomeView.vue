@@ -4,14 +4,8 @@
     <div class="fon">
       <div class="autorization_all">
         <form action="" class="form_autorization">
-          <div class="form_autorization-inps">
-            <label class="form_autorization-label" for="">Почта</label>
-            <input class="form_autorization-inp"  v-model="gmail" type="text" name="" id="" />
-          </div>
-          <div class="form_autorization-inps form_autorization-inps-pass">
-            <label class="form_autorization-label" for="">Пароль</label>
-            <input class="form_autorization-inp" v-model="password" type="text" name="" id="" />
-          </div>
+           <inputForm  :title="'Почта'" v-model="gmail" />
+           <inputForm  :title="'Пароль'" v-model="password" />
           <btnAutorization :link="''" @click="autorization()">Вход</btnAutorization>
           <a href="" class="form_autorization-link">Забыли пароль?</a>
           <btnAutorization :link="'register'" class="form_autorization-reg">
@@ -25,6 +19,7 @@
 
 <script setup>
 import router from '@/router'
+import inputForm from '@/components/UI/inputForm.vue'
 import btnAutorization from '@/components/UI/btnAutorization.vue'
 import { ref } from 'vue';
 import axios from 'axios';

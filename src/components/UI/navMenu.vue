@@ -8,8 +8,8 @@
         ><img class="nav_link-img" src="@/assets/img/analysis.svg" alt=""
       /></router-link>
     </div>
-     <button class="nav_link-abs"
-        ><img class="nav_link-img" src="@/assets/img/plus.svg" alt=""
+     <button @click="emit('toggleShow')" class="nav_link-abs"
+        ><img :class="{'rotate': close}" src="@/assets/img/plus.svg" alt=""
       /></button>
     <div class="nav_links">
       <router-link class="nav_link" to="/setting"
@@ -21,14 +21,19 @@
     </div>
   </nav>
 </template>
-<script setup></script>
+<script setup>
+const emit = defineEmits(['toggleShow'])
+defineProps({
+  close: Boolean
+})
+</script>
 <style>
 .nav {
   position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
-  /* overflow: hidden; */
+  z-index: 5;
   border-radius: 40px 40px 0 0;
   --back-nav: #dff7e2;
   background-color: var(--back-nav);
@@ -45,8 +50,8 @@
   border-radius: 50%;
   background-color: var(--back-green);
   z-index: 2;
-  height: 85px;
-  width: 85px;
+  height: 81px;
+  width: 81px;
 }
 .nav_link-abs {
   position: absolute;
@@ -64,6 +69,7 @@
 }
 .nav_link-abs img {
   width: 40px;
+  transition: all .3s;
 }
 .nav_links {
   display: flex;
@@ -82,5 +88,9 @@
 }
 .nav_link-img {
   width: 30px;
+}
+.rotate {
+  transition: all .3s;
+  transform: rotate(45deg);
 }
 </style>

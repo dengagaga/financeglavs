@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { defineStore } from 'pinia'
 import { useListAllStore } from './listAll'
 
@@ -47,9 +47,14 @@ const bigExpenseWeek = ref(0);
 const bigExpenseMounth = ref(0);
 const totalProfitWeek = ref(0);
 const totalProfitMounth = ref(0);
-listAllStore.listAll.forEach(item => {
+
+watch(() => listAllStore.listAll, // Теперь это getter-функция
+  () => {
+    totalProfitToday.value = 0
+  listAllStore.listAll.forEach(item => {
   if(item.data === formattedDataDay.value && item.type === 'income') {
-    totalProfitToday.value += item.price
+    totalProfitToday.value += +item.price
+    
   }
   if (item.data === formattedDataDay.value && item.type === 'expense') {
     total.push(item.price)
@@ -57,5 +62,11 @@ listAllStore.listAll.forEach(item => {
     bigExpenseToday.value = total[0]
   }
 })
+  },
+  { deep: true }
+);
+
+
+
   return { pickDay, toggleActive, activeDay, formattedDataDay, totalProfitToday, totalProfitWeek, totalProfitMounth, bigExpenseToday, bigExpenseWeek, bigExpenseMounth }
 })
