@@ -1,6 +1,6 @@
 <template>
     <ul class="list">
-        <li class="item" v-for="item in listAllStore.listAll" :key="item.id">
+        <li class="item" v-for="item in listDay" :key="item.id">
           <img class="item_img" alt="" :src="item.img" />
           <div class="item_content">
               <h4 class="item_content-title">{{ item.title }}</h4>
@@ -10,15 +10,21 @@
             {{ item.cause }}
           </p>
           <p class="item_price">
-            {{ item.price }}р
+            {{ item.price }} ₽
           </p>
         </li>
     </ul>
 </template>
 <script setup>
 import { useListAllStore } from '@/stores/listAll';
-
+import { computed } from 'vue'
+import { useDaysStore } from '@/stores/days';
+const daysStore = useDaysStore()
 const listAllStore = useListAllStore()
+const listDay = computed(() => {
+  return daysStore.activeDay.id == 1 ? listAllStore.listAll.filter(item => item.data == daysStore.formattedDataDay) : daysStore.activeDay.id == 2 ? listAllStore.listAll.filter(item => item.data == daysStore.formattedDataWeek) : listAllStore.listAll.filter(item => item.data.split('.')[1] == daysStore.formattedDataMounth)
+})
+console.log(listAllStore.listAll, daysStore.formattedDataDay);
 
 </script>
 <style>
@@ -32,7 +38,7 @@ const listAllStore = useListAllStore()
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 5px 0px;
     font-size: 14px;
 }
 .item_content {
@@ -58,7 +64,7 @@ const listAllStore = useListAllStore()
    font-weight: 700;
 }
 .item_price {
-    width: 50px;
+    width: 70px;
 }
 .item_cause-expense {
    border-right: 1px solid var(--main-blue);

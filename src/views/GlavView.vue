@@ -12,14 +12,14 @@
             <img src="@/assets/img/Income.png" alt="" />
             Общий доход
           </h3>
-          <h1 class="title_2">144 000 Р</h1>
+          <h1 class="title_2">{{ totalProfit }} ₽</h1>
         </div>
         <div class="header_mid-right">
           <h3 class="title_5">
             <img src="@/assets/img/Expense.png" alt="" />
             Общий расход
           </h3>
-          <h1 class="title_2 title_blue">- 144 000 Р</h1>
+          <h1 class="title_2 title_blue">- {{ totalExpense }} ₽</h1>
         </div>
       </div>
       <div class="header_bot"></div>
@@ -45,6 +45,15 @@ import pickDay from '@/components/UI/pickDay.vue'
 import list from '@/components/UI/list.vue'
 import { onMounted, ref } from 'vue'
 import { useListAllStore } from '@/stores/listAll'
+import { computed } from 'vue'
+import { useDaysStore } from '@/stores/days';
+const daysStore = useDaysStore()
+const totalProfit = computed(() => {
+  return daysStore.activeDay.id == 1 ? daysStore.totalProfitToday : daysStore.activeDay.id == 2 ? daysStore.totalProfitWeek : daysStore.totalProfitMounth
+})
+const totalExpense = computed(() => {
+  return daysStore.activeDay.id == 1 ? daysStore.totalExpenseToday : daysStore.activeDay.id == 2 ? daysStore.totalExpenseWeek : daysStore.totalExpenseMounth
+})
 const listAllStore = useListAllStore()
 onMounted(() => {
   listAllStore.getListAll()

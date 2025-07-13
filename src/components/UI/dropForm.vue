@@ -1,4 +1,6 @@
 <template>
+    <div class="form_autorization-inps">
+ <label for="" class="form_autorization-label">{{ title }}</label>
     <select 
         name="transaction_type" 
         id="transaction_type" 
@@ -6,7 +8,7 @@
         :value="modelValue"
         @change="$emit('update:modelValue', $event.target.value)"
     >
-        <option value="">{{ title }}</option>
+        <!-- <option value="">{{ title }}</option> -->
         <option 
             :value="title == 'Выберите категорию' ? item.name : item.type" 
             v-for="item in ar" 
@@ -15,6 +17,8 @@
             {{ item.name }}
         </option>
     </select>
+    </div>
+   
 </template>
 
 <script setup>
@@ -29,12 +33,12 @@ defineEmits(['update:modelValue']);
 
 <style>
 .transaction_type {
-    padding: 7px 14px;
+    padding: 11px 34px;
     font-size: 15px;
     min-width: 95px;
-    color: var(--main-color);
+    color: var(--main-welcome);
     border-radius: 14px;
-    border: 1px solid var(--main-color);
+    background-color:var(--main-white);
     width: 100%;
     font-weight: 600;
 }

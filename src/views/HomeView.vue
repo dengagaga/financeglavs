@@ -34,10 +34,12 @@ const autorization = () => {
         gmail.value = '';
         password.value = '';
         router.push('/glav')
-      }
-    }
+      } 
+    } 
    
-  );
+  ).catch((error) => {
+    alert(error.response.data.message);
+  });
 }
 </script>
 

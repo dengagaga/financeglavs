@@ -39,7 +39,7 @@ defineProps({
   background-color: var(--back-nav);
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px;
+  padding: 12px 20px;
 }
 .nav::after {
   content: '';

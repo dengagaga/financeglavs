@@ -88,7 +88,7 @@ const add = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 .modal_all-inp input {
     background-color: var(--main-white);
